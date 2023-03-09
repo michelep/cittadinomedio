@@ -28,5 +28,19 @@ $(document).ready(function() {
 
         })
     }(jQuery));
+
+    $(".ajaxForm").submit(function(e) {
+	e.preventDefault(); 
+	var form = $(this);
+	$.ajax({
+	    type: "POST",
+	    url: "/ajax/quiz",
+	    data: form.serialize(),
+	    dataType: "json",
+	    success: function(data) {
+		
+	    }
+	});
+    });
 });
 
