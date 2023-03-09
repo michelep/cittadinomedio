@@ -25,8 +25,9 @@ getHeader();
 
 	    <main class="px-3">
 		<h1>Partecipa al progetto!</h1>
-		<p class="lead">Vuoi suggerire un comportamento sbagliato da aggiungere? Vuoi segnalare una risposta non corretta o suggerirne un miglioramento?</p>
-		<p class="lead">Unisciti al gruppo Telegram <a href="https://t.me/cittadinomedio">t.me/cittadinomedio</a> oppure scrivi una mail a <a href="mail:cittadinomedio@protonmail.com">cittadinomedio@protonmail.com</a></p>
+		<p class="lead">Vuoi suggerire un comportamento sbagliato da aggiungere? Vuoi segnalare una risposta non corretta o suggerirne un miglioramento? Vuoi contribuire allo sviluppo della piattaforma?</p>
+		<p class="lead">Unisciti al gruppo Telegram <a href="https://t.me/cittadinomedio">t.me/cittadinomedio</a>, per entrare in contatto con la community, oppure scrivi una mail a <a href="mail:cittadinomedio@protonmail.com">cittadinomedio@protonmail.com</a>. 
+		Puoi contribuire al codice direttamente via PR da Github sul repo <a href="https://github.com/michelep/cittadinomedio">github.com/michelep/cittadinomedio</a>.</p>
 	    </main>
 <?php 
 // FOOTER
