@@ -1,0 +1,116 @@
+--
+-- Database: `cittadinomedio`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `DailyStats`
+--
+
+CREATE TABLE `DailyStats` (
+  `dayDate` date NOT NULL,
+  `quoteId` int(11) NOT NULL,
+  `Views` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Quotes`
+--
+
+CREATE TABLE `Quotes` (
+  `ID` int(11) NOT NULL,
+  `Title` text NOT NULL,
+  `Description` text DEFAULT NULL,
+  `PermaURL` text DEFAULT NULL,
+  `Author` varchar(32) DEFAULT NULL,
+  `Type` tinyint(4) NOT NULL DEFAULT 0,
+  `Views` int(11) NOT NULL DEFAULT 0,
+  `dailyViews` int(11) NOT NULL DEFAULT 0,
+  `rateLike` int(11) NOT NULL DEFAULT 0,
+  `rateDislike` int(11) NOT NULL DEFAULT 0,
+  `addDate` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `QuoteTags`
+--
+
+CREATE TABLE `QuoteTags` (
+  `quoteId` int(11) NOT NULL,
+  `tagId` int(11) NOT NULL,
+  `addDate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `Tags`
+--
+
+CREATE TABLE `Tags` (
+  `ID` int(11) NOT NULL,
+  `Tag` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indici per le tabelle scaricate
+--
+
+--
+-- Indici per le tabelle `DailyStats`
+--
+ALTER TABLE `DailyStats`
+  ADD PRIMARY KEY (`dayDate`);
+
+--
+-- Indici per le tabelle `Quotes`
+--
+ALTER TABLE `Quotes`
+  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `Quotes` ADD FULLTEXT KEY `Title` (`Title`,`Description`);
+
+--
+-- Indici per le tabelle `QuoteTags`
+--
+ALTER TABLE `QuoteTags`
+  ADD UNIQUE KEY `quoteId` (`quoteId`,`tagId`),
+  ADD KEY `tagId` (`tagId`);
+
+--
+-- Indici per le tabelle `Tags`
+--
+ALTER TABLE `Tags`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `Quotes`
+--
+ALTER TABLE `Quotes`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `Tags`
+--
+ALTER TABLE `Tags`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `QuoteTags`
+--
+ALTER TABLE `QuoteTags`
+  ADD CONSTRAINT `QuoteTags_ibfk_1` FOREIGN KEY (`tagId`) REFERENCES `Tags` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `QuoteTags_ibfk_2` FOREIGN KEY (`quoteId`) REFERENCES `Quotes` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION;
+COMMIT;

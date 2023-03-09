@@ -1,0 +1,240 @@
+@font-face {
+  font-family: 'Rubik-Black';
+  src: url('/fonts/Rubik-Black.eot');
+  src: url('/fonts/Rubik-Black.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/Rubik-Black.svg#Rubik-Black') format('svg'),
+       url('/fonts/Rubik-Black.ttf') format('truetype'),
+       url('/fonts/Rubik-Black.woff') format('woff'),
+       url('/fonts/Rubik-Black.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  border-color: #FFDE03;
+  background-color: #FFDE03;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  color: #222;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.quote-container a {
+  color: #FFDE03;
+}
+
+a:hover {
+  color: #FFDE03;
+}
+
+body {
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+.logo, h1 {
+  font-family: 'Rubik-Black';
+}
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .5);
+  background-color: transparent;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: #FFDE03;
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+/*
+SOCIAL SHARE 
+*/
+
+.share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.share ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+
+@media (max-width:700px) { 
+    .share ul {
+	display: block;
+    }
+}
+
+.share ul li {
+    margin: 6px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative
+}
+
+.share ul li i {
+    transition: all 0.3s linear
+}
+
+.share ul li:hover i {
+    color: #fff;
+    font-size: 17px
+}
+
+.share ul li:hover::after {
+    opacity: 1;
+    transform: scale(0.8)
+}
+
+.share ul li::after {
+    content: "";
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    border-radius: 50%;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.3s linear
+}
+
+.share ul li:nth-child(1) {
+    border: 2px solid #3b5998;
+    color: #3b5998
+}
+
+.share ul li:nth-child(1)::after {
+    background-color: #3b5998;
+    color: #3b5998
+}
+
+.share ul li:nth-child(2) {
+    border: 2px solid #00aced;
+    color: #00aced
+}
+
+.share ul li:nth-child(2)::after {
+    background-color: #00aced;
+    color: #00aced
+}
+
+.share ul li:nth-child(3) {
+    border: 2px solid #007bb6;
+    color: #007bb6
+}
+
+.share ul li:nth-child(3)::after {
+    background-color: #007bb6;
+    color: #007bb6
+}
+
+.share ul li:nth-child(4) {
+    border: 2px solid #5CAB65;
+    color: #5CAB65
+}
+
+.share ul li:nth-child(4)::after {
+    background-color: #5CAB65;
+    color: #5CAB65
+}
+
+.share ul li:nth-child(5) {
+    border: 2px solid #dd4b39;
+    color: #dd4b39
+}
+
+.share ul li:nth-child(5)::after {
+    background-color: #dd4b39;
+    color: #dd4b39
+}
+
+/*
+RATING STYLE
+*/
+.vote { display: inline; font-size: 1.125em; cursor: pointer; }
+.vote fa-thumbs-up { color: #1abc9c; padding-left 5px; }
+.vote fa-thumbs-down { color: #e74c3c; padding-left: 5px; }
+
+/*
+ALERT SUCCESS
+*/
+.alert-success {
+  background: #f3f8f3;
+  border: none;
+  border-left: 4px solid #45D298;
+  border-radius: 0;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .2);
+  padding: 0.75rem 0.75rem !important;
+}
+
+.alert-success .fa {
+  color: #45D298;
+  display:table-cell;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 40px;
+}
+
+.alert-success .alert-body {
+  padding-left: 0.75rem;
+  display: table-cell;
+  color: rgba(0,0,0,0.5);
+}
+
+.alert-success .alert-header {
+  font-weight: 700;
+  color: #45D298;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width:700px) { 
+    tag span {
+	display: block;
+    }
+}
+
+.search-list {
+    border-bottom: 1px solid #aaaaaa;
+    text-align: left;
+}
+
+.search-list-box {
+    margin-top: 20px;
+}
+
+.table {
+    color: white;
+}

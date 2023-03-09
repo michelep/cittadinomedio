@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /fonts/
+Disallow: /style/
+Disallow: /js/
+Disallow: /admin/
+Disallow: /cron/
+
