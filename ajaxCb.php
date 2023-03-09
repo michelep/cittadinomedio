@@ -8,6 +8,19 @@ if(isset($_GET["a"])) {
     $ajaxAction = preg_replace("/[^a-z0-9\-]/", "", $_POST["a"]);
 }
 
+if($ajaxAction == "quiz") {
+    $quoteId = intval($mySession->getAVP("quote-id"));
+    $nonce = $_POST["nonce"];
+    $risposta = intval($_POST["risposta"]);
+    if($risposta > 0) {
+	// Analizza risposta
+	
+
+    } else {
+	// Nessuna risposta
+    }
+}
+
 if(($ajaxAction == "like")||($ajaxAction == "dislike")) {
     $quoteId = intval($mySession->getAVP("quote-id"));
 

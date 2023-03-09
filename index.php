@@ -103,9 +103,9 @@ if($myQuote->Type == 2) {
     
     echo "
     <div class=\"row text-start\" >
-	<form class=\"needs-validation\" novalidate method=\"POST\">
-	<input type=\"hidden\" name=\"quiz_id\" value=\"".md5(APG(10))."\">
-	<div class=\"invalid-feedback\">Hey! Ricordati di selezionare una risposta...</div>";
+	<form class=\"ajaxForm\" novalidate method=\"POST\">
+	<input type=\"hidden\" name=\"nonce\" value=\"".$mySession->getNonce()."\">
+	<div class=\"no-answer\">Hey! Ricordati di selezionare una risposta...</div>";
 
     $risposta_id=0;
 
@@ -114,10 +114,10 @@ if($myQuote->Type == 2) {
 	$risposta_id += 1;
 
 	switch($risposta["tipo"]) {
-	    case "radio":
+	    case "radio": // Radio button?
 ?>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="risposta" id="risposta-<?php echo $risposta_id; ?>" required>
+  <input class="form-check-input" type="radio" name="risposta" value="<?php echo $risposta_id; ?>" id="risposta-<?php echo $risposta_id; ?>" required>
   <label class="form-check-label" for="risposta-<?php echo $risposta_id; ?>">
     <?php echo $risposta["testo"]; ?>
   </label>
