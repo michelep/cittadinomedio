@@ -103,24 +103,20 @@ if($myQuote->Type == 2) {
     
     echo "
     <div class=\"row text-start\" >
-	<form class=\"ajaxForm\" novalidate method=\"POST\">
-	<input type=\"hidden\" name=\"nonce\" value=\"".$mySession->getNonce()."\">
-	<div class=\"no-answer\">Hey! Ricordati di selezionare una risposta...</div>";
+	<div class=\"alert alert-warning\" style=\"display:none\" id=\"alert-warning\" role=\"alert\">&nbsp;</div>
+	<div class=\"alert alert-danger\" style=\"display:none\" id=\"alert-error\" role=\"alert\">&nbsp;</div>
+	<div class=\"alert alert-success\" style=\"display:none\" id=\"alert-success\" role=\"alert\">&nbsp;</div>
+	<form id=\"quizForm\" novalidate method=\"POST\">
+	<input type=\"hidden\" name=\"nonce\" value=\"".$mySession->getNonce()."\">";
 
-    $risposta_id=0;
-
-    foreach($ydata as $risposta) {
-//	print_r($risposta);
-	$risposta_id += 1;
-
-	switch($risposta["tipo"]) {
+    foreach($ydata["answer"] as $entry) {
+	$entry_id = md5($entry["text"]);
+	switch($entry["type"]) {
 	    case "radio": // Radio button?
 ?>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="risposta" value="<?php echo $risposta_id; ?>" id="risposta-<?php echo $risposta_id; ?>" required>
-  <label class="form-check-label" for="risposta-<?php echo $risposta_id; ?>">
-    <?php echo $risposta["testo"]; ?>
-  </label>
+  <input class="form-check-input" type="radio" name="answer" value="<?php echo $entry_id; ?>" id="answer-<?php echo $entry_id; ?>" required>
+  <label class="form-check-label" for="answer-<?php echo $entry_id; ?>"><?php echo $entry["text"]; ?></label>
 </div>
 <?php
 		break;
@@ -128,9 +124,20 @@ if($myQuote->Type == 2) {
 		break;
 	}
     }
-    echo "	<br><input type=\"submit\" class=\"btn btn-info\" value=\"Rispondi\">
-	</form>
-    </div>";
+?>
+    		<br>
+		<div class="clearfix text-center">
+		    <input type="submit" class="btn btn-primary text-center" value="Prova a rispondere">
+		</div>
+	    </form>
+	</div>
+	<div class="clearfix" id="quizAfter" style="display:none">
+	    <p class="lead quote-container"><?php echo $ydata["hint"]; ?></p>
+	    <a class="btn btn-primary btn-xs" href="/" role="button">Prosegui nella esplorazione</a><br/>
+	    <i>oppure prova a <a href="/search">fare una ricerca</a></i>.
+	</div>
+    </main>
+<?php
 } else {
 /* Comportamento sbagliato o migliorabile */
 ?>
@@ -163,17 +170,15 @@ if($myQuote->Type == 2) {
 		    </div>
 		    <hr>
 		</div>
-<?php
-}
-?>
 	    </main>
 	    
 	    <div class="clearfix">
 		<a class="btn btn-primary btn-xs" href="/" role="button">Scopri un altro comportamento migliorabile</a><br/>
 		<i>oppure prova a <a href="/search">fare una ricerca</a></i>.
 	    </div>
-
 <?php
+}
+
 if($mySession->isAdmin()) {
     // ADMIN TOOLBAR
 ?>

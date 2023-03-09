@@ -29,7 +29,7 @@ $(document).ready(function() {
         })
     }(jQuery));
 
-    $(".ajaxForm").submit(function(e) {
+    $("#quizForm").submit(function(e) {
 	e.preventDefault(); 
 	var form = $(this);
 	$.ajax({
@@ -38,7 +38,24 @@ $(document).ready(function() {
 	    data: form.serialize(),
 	    dataType: "json",
 	    success: function(data) {
-		
+		if(data.error == 0) { // Success!
+		    $("#alert-success").html(data.message);
+		    $("#alert-success").fadeIn();
+		    $("#quizForm input").attr("disabled", true);
+		    $("#quizForm").fadeOut();
+		    $("#quizAfter").fadeIn();
+		}
+		if(data.error == 1) { // Warning
+		    $("#alert-warning").html(data.message);
+		    $("#alert-warning").fadeIn().delay(5000).fadeOut();
+		}
+		if(data.error == 2) { // Error
+		    $("#alert-error").html(data.message);
+		    $("#alert-error").fadeIn();
+		    $("#quizForm input").attr("disabled", true);
+		    $("#quizForm").fadeOut();
+		    $("#quizAfter").fadeIn();
+		}
 	    }
 	});
     });

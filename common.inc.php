@@ -79,7 +79,11 @@ function getHeader($quote=false) {
     global $CFG;
 
     if($quote) {
-	$description = stringShortner($quote->Description,200);
+	if($quote->Type == 2) {
+	    $description = stringShortner("Mettiti alla prova! ".$quote->Title,70);
+	} else {
+	    $description = stringShortner($quote->Description,200);
+	}
 	$keywords = $quote->Keywords;
 	$title = stringShortner("Cittadino Medio - ".$quote->Title,70);
 	$url = $quote->getURL();
