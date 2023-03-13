@@ -8,12 +8,20 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 
 $sessionId = session_id();
 
+/* New visitor ? */
 if(empty($sessionId)) {
     session_start();
     $sessionId = session_id();
+    /* generate a random username and save to session object */
+    $mySession = new Session($sessionId);
+    $mySession->setAVP("nickname", generateRandomNickname());
+} else {
+    $mySession = new Session($sessionId);
+    if(!$mySession->getAVP("nickname")) {
+	$mySession->setAVP("nickname", generateRandomNickname());
+    }
 }
 
-$mySession = new Session($sessionId);
 
 $DB = OpenDB();
 
@@ -62,6 +70,13 @@ function stringShortner($string, $length=60) {
 	$text = trim(implode(' ', $words));
     }
     return $text."...";
+}
+
+function generateRandomNickname() {
+    $randomName = array("Ermellino","Volpotto","Torello","Lombrico","Passerotto","Scricciolo","Picchio","Fagiano","Gattino","Montone");
+    $randomStatus = array("simpatico","furioso","addormentato","stanco","curioso","insospettito");
+
+    return array_rand(array_flip($randomName), 1)." ".array_rand(array_flip($randomStatus), 1);
 }
 
 
@@ -141,6 +156,18 @@ function getHeader($quote=false) {
 	<link href=\"/style/common.css\" rel=\"stylesheet\">
     </head>";
 }
+
+function getNavbar() {
+    echo "<header class=\"mb-auto\">
+	<div>
+	    <h3 class=\"float-md-start mb-0 logo\"><a href=\"/\" aria-current=\"page\">Cittadino Medio</a></h3>
+	    <nav class=\"nav nav-masthead justify-content-center float-md-end\">
+		<a class=\"nav-link\" href=\"/il-progetto\">Il progetto</a>
+	    </nav>
+	</div>
+    </header>";
+}
+
 
 function isSelect($val_a, $val_b) {
     if($val_a == $val_b) return "selected";

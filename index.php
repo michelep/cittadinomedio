@@ -6,7 +6,7 @@ if(isset($_GET["q"])) {
     /* Get permaurl quote */
     $q = preg_replace("/[^a-z0-9\-]/", "", $_GET["q"]);
 
-    $result = doQuery("SELECT ID FROM Quotes WHERE PermaURL=:permaurl",array(":permaurl" => $q));
+    $result = doQuery("SELECT ID FROM Quotes WHERE isEnabled=1 AND PermaURL=:permaurl",array(":permaurl" => $q));
     if($result->rowCount() > 0) {
 	$row = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -36,11 +36,10 @@ if(isset($_GET["q"])) {
     } else {
 	$quotesArray=array();
 	/* Fetch all quotes and keep only not-yet viewed */
-	$result = doQuery("SELECT ID FROM Quotes;");
+	$result = doQuery("SELECT ID FROM Quotes WHERE isEnabled=1;");
 	if($result->rowCount() > 0) {
 	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-		$id = $row["ID"];
-		$quotesArray[] = $id;
+		$quotesArray[] = $row["ID"];
 	    }
 	}
     }
@@ -65,27 +64,24 @@ if(!$mySession->getAVP("quote-".$myQuote->ID)) {
     doQuery("UPDATE Quotes SET Views=Views+1,dailyViews=dailyViews+1 WHERE ID=:id",array(":id" => $myQuote->ID));
 }
 
+// ugly workaround #TOFIX
+if(!$myQuote->ID) {
+    header("location: /");
+}
+
 ?>
 <!doctype html>
 <html lang="en" class="h-100">
 <?php 
 // HEADER
 getHeader($myQuote);
-//
+
 ?>
     <body class="d-flex h-100 text-center text-white bg-dark">
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	    <header class="mb-auto">
-		<div>
-		    <h3 class="float-md-start mb-0 logo"><a href="/">Cittadino Medio</a></h3>
-		    <nav class="nav nav-masthead justify-content-center float-md-end">
-			<a class="nav-link active" aria-current="page" href="/">Home</a>
-			<a class="nav-link" href="/il-progetto">Il progetto</a>
-			<a class="nav-link" href="/partecipa">Partecipa</a>
-		    </nav>
-		</div>
-	    </header>
-
+<?php
+getNavbar();
+?>
 	    <main class="px-3">
 		<div class="text-end" id="tags"><?php
 		foreach($myQuote->Tags as $tag_id => $tag_value) {
@@ -191,11 +187,6 @@ if($mySession->isAdmin()) {
 
 // FOOTER
 getFooter();
-//
-echo "<!--";
-// SESSION DEBUG 
-//print_r($mySession->AVP);
-echo "--!>";
 ?>
 	</div>
     </body>

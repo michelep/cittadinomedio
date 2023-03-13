@@ -12,17 +12,10 @@ getHeader();
 ?>
     <body class="d-flex h-100 text-center text-white bg-dark">
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	    <header class="mb-auto">
-		<div>
-		    <h3 class="float-md-start mb-0 logo"><a href="/">Cittadino Medio</a></h3>
-		    <nav class="nav nav-masthead justify-content-center float-md-end">
-			<a class="nav-link" href="/">Home</a>
-			<a class="nav-link" href="/il-progetto">Il progetto</a>
-			<a class="nav-link" href="/partecipa">Partecipa</a>
-		    </nav>
-		</div>
-	    </header>
-
+<?php
+// NAVBAR
+getNavbar();
+?>
 	    <main class="px-1">
 		<h1>Privacy Policy</h1>
 		<p class="lead">

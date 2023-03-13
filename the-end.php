@@ -12,17 +12,10 @@ getHeader();
 ?>
     <body class="d-flex h-100 text-center text-white bg-dark">
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-	    <header class="mb-auto">
-		<div>
-		    <h3 class="float-md-start mb-0 logo"><a href="/">Cittadino Medio</a></h3>
-		    <nav class="nav nav-masthead justify-content-center float-md-end">
-			<a class="nav-link" href="/">Home</a>
-			<a class="nav-link" href="/il-progetto">Il progetto</a>
-			<a class="nav-link active" aria-current="page"  href="/partecipa">Partecipa</a>
-		    </nav>
-		</div>
-	    </header>
-
+<?php
+// NAVBAR
+getNavbar();
+?>
 	    <main class="px-3">
 		<h1>Congratulazioni!</h1>
 		<p class="lead"><b>Hai completato la visualizzazione di tutti i consigli al momento presenti su Cittadino Medio.</b></p>
