@@ -106,7 +106,7 @@ if($myQuote->Type == 2) {
 	<div class=\"alert alert-warning\" style=\"display:none\" id=\"alert-warning\" role=\"alert\">&nbsp;</div>
 	<div class=\"alert alert-danger\" style=\"display:none\" id=\"alert-error\" role=\"alert\">&nbsp;</div>
 	<div class=\"alert alert-success\" style=\"display:none\" id=\"alert-success\" role=\"alert\">&nbsp;</div>
-	<form id=\"quizForm\" novalidate method=\"POST\">
+	<form action=\"".$myQuote->getURL()."\" id=\"quizForm\" novalidate method=\"POST\">
 	<input type=\"hidden\" name=\"nonce\" value=\"".$mySession->getNonce()."\">";
 
     foreach($ydata["answer"] as $entry) {
