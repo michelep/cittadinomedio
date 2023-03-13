@@ -29,7 +29,7 @@ if((isset($_GET["s"])&&(strlen($_GET["s"]) > 0))) {
     $searchTerm = preg_replace("/[^a-zA-Z0-9_]+/", "", $_GET["s"]);
 
     if(strncmp($searchTerm,'_all',15)==0) {
-	$result = doQuery("SELECT ID FROM Quotes ORDER BY addDate DESC");
+	$result = doQuery("SELECT ID FROM Quotes WHERE Type < 2 ORDER BY addDate DESC");
 	if($result->rowCount() > 0) {
 	    echo "<div class=\"search-list-box\"><ul class=\"list-group list-group-flush\">";
 	    while($row = $result->fetch(PDO::FETCH_ASSOC)) {

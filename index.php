@@ -136,6 +136,16 @@ if($myQuote->Type == 2) {
 	    <a class="btn btn-primary btn-xs" href="/" role="button">Prosegui nella esplorazione</a><br/>
 	    <i>oppure prova a <a href="/search">fare una ricerca</a></i>.
 	</div>
+	<hr>
+        <div class="share text-center">
+	    <ul>
+	        <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $myQuote->getURL(); ?>"><i class="fa fa-facebook"></i></a></li>
+		<li><a href="https://twitter.com/share?url=<?php echo $myQuote->getURL(); ?>&text=<?php echo prepareForTwitter($myQuote->Title); ?>&via=cittadinomedio"><i class="fa fa-twitter"></i></a></li>
+		<li><a href="https://www.linkedin.com/shareArticle?url=<?php echo $myQuote->getURL(); ?>&title=<?php echo $myQuote->Title; ?>"><i class="fa fa-linkedin"></i></a></li>
+		<li><a href="whatsapp://send?text=<?php echo $myQuote->getURL(); ?>" data-action="share/whatsapp/share" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+		<li><a href="<?php echo $myQuote->getURL(); ?>"><i class="fa fa-link"></i></a></li>
+	    </ul>
+	</div>
     </main>
 <?php
 } else {
@@ -158,16 +168,6 @@ if($myQuote->Type == 2) {
 			    <span class="badge badge-light" id="rate_dislike_count"><?php echo $myQuote->Dislike; ?></span>
 			</button>
                     </div>
-		    <hr>
-		    <div class="share text-center">
-			<ul>
-			    <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $myQuote->getURL(); ?>"><i class="fa fa-facebook"></i></a></li>
-		    	    <li><a href="https://twitter.com/share?url=<?php echo $myQuote->getURL(); ?>&text=<?php echo prepareForTwitter($myQuote->Title); ?>&via=cittadinomedio"><i class="fa fa-twitter"></i></a></li>
-			    <li><a href="https://www.linkedin.com/shareArticle?url=<?php echo $myQuote->getURL(); ?>&title=<?php echo $myQuote->Title; ?>"><i class="fa fa-linkedin"></i></a></li>
-			    <li><a href="whatsapp://send?text=<?php echo $myQuote->getURL(); ?>" data-action="share/whatsapp/share" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
-			    <li><a href="<?php echo $myQuote->getURL(); ?>"><i class="fa fa-link"></i></a></li>
-			</ul>
-		    </div>
 		    <hr>
 		</div>
 	    </main>
